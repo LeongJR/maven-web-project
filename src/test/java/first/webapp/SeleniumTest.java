@@ -1,18 +1,17 @@
-import first.webapp.DatabaseOperations;
-import first.webapp.User;
+package first.webapp;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @DisplayName("Junit Tests")
-class JUnitTest {
+class SeleniumTest {
 
     DatabaseOperations mockDatabase = Mockito.mock(DatabaseOperations.class) ;
     private User user;

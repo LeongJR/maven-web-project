@@ -15,6 +15,14 @@
 	<sonar.junit.reportPaths>${project.basedir}/target/surefire-reports/TEST-JunitTest.xml</sonar.junit.reportPaths>
 	<!-- <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths> -->
 	<sonar.language>java</sonar.language>
+	<!-- Selenium and TestNg properties -->
+	<selenium.groupId>org.seleniumhq.selenium</selenium.groupId>
+	<selenium.artifactId>selenium-java</selenium.artifactId>
+	<selenium.version>2.53.1</selenium.version>
+	<testng.groupId>org.testng</testng.groupId>
+	<testng.artifactId>testng</testng.artifactId>
+	<testng.version>6.9.10</testng.version>
+
 	</properties>
 
   <dependencies>
@@ -59,8 +67,21 @@
 	  <scope>test</scope>
 	</dependency>
 
-		
-</dependencies>
+	<dependency>
+	  <groupId>${selenium.groupId}</groupId>
+	  <artifactId>${selenium.artifactId}</artifactId>
+	  <version>${selenium.version}</version>
+	</dependency>
+
+	<dependency>
+	  <groupId>${testng.groupId}</groupId>
+	  <artifactId>${testng.artifactId}</artifactId>
+	  <version>${testng.version}</version>
+      <scope>test</scope>
+	</dependency>
+
+
+  </dependencies>
   
   <build>
     <plugins>
