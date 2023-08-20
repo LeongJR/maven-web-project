@@ -47,4 +47,17 @@ class JUnitTest {
         assertEquals(user.getName(), "pepega");
     }
 
+    @Test
+    @DisplayName("Test get name")
+    void testGetName (){
+        assertEquals(user.getName(), "pepe");
+    }
+
+    @Test
+    @DisplayName("Test get password and set password")
+    void testPWGetSet() {
+        user.setPassword("fuckyou");
+        assertEquals(user.getPassword(), "fuckyou");
+    }
+
 }
