@@ -6,6 +6,10 @@
   <packaging>war</packaging>
 
 	<properties>
+		<!-- jacoco properties -->
+	<jacoco.groupId>org.jacoco</jacoco.groupId>
+	<jacoco.artifactId>jacoco-maven-plugin</jacoco.artifactId>
+	<jacoco.version>0.8.8</jacoco.version>
     <!-- Junit -->
 	<junit-jupiter.groupId>org.junit.jupiter</junit-jupiter.groupId>
 	<junit-jupiter.artifactId>junit-jupiter</junit-jupiter.artifactId>
@@ -13,7 +17,7 @@
 	<!-- SonarQube properties -->
 	<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
 	<sonar.junit.reportPaths>${project.basedir}/target/surefire-reports/TEST-first.webapp.JUnitTest.xml</sonar.junit.reportPaths>
-	<!-- <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths> -->
+	<sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
 	<sonar.language>java</sonar.language>
 	<!-- Selenium and TestNg properties -->
 	<selenium.groupId>org.seleniumhq.selenium</selenium.groupId>
@@ -80,11 +84,40 @@
       <scope>test</scope>
 	</dependency>
 
+	<dependency>
+		  <groupId>org.jacoco</groupId>
+		  <artifactId>jacoco-maven-plugin</artifactId>
+		  <version>${jacoco.version}</version>
+	</dependency>
 
   </dependencies>
   
   <build>
     <plugins>
+		<plugin>
+			<groupId>${jacoco.groupId}</groupId>
+			<artifactId>${jacoco.artifactId}</artifactId>
+			<version>${jacoco.version}</version>
+			<executions>
+				<execution>
+					<id>prepare-agent</id>
+					<goals>
+						<goal>prepare-agent</goal>
+					</goals>
+				</execution>
+				<execution>
+					<id>report</id>
+					<phase>verify</phase>
+					<goals>
+						<goal>report</goal>
+					</goals>
+					<configuration>
+						<!-- Generate xml-->
+						<formats>XML</formats>
+					</configuration>
+				</execution>
+			</executions>
+		</plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
