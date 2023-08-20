@@ -40,7 +40,7 @@ public class SeleniumTest {
         webDriver.findElement(By.linkText("Click to go to user registration")).click();
 
         //Assert the new title to check that the title contain Wikipedia and the button had successfully bring us to the new page
-        Assert.assertTrue(webDriver.getTitle().contains("Wikipedia"));
+        Assert.assertTrue(webDriver.getTitle().contains("Register"));
         System.out.println("new title: "+webDriver.getTitle());
     }
 
