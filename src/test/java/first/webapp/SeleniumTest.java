@@ -1,48 +1,52 @@
 package first.webapp;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
-import java.util.ArrayList;
+@Test
+public class SeleniumTest {
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
+    //declare Selenium WebDriver
+    private WebDriver webDriver;
 
-@DisplayName("Junit Tests")
-class SeleniumTest {
-
-    DatabaseOperations mockDatabase = Mockito.mock(DatabaseOperations.class) ;
-    private User user;
-    private User user2;
-    private ArrayList<User> userlist = new ArrayList<>();
-
-    @BeforeEach
+    @BeforeTest
     public void preTestSetup () {
+        //Setting system properties of ChromeDriver
+        //to amend directory path base on your local file path
+        String chromeDriverDir = "C:\\Program Files\\Google\\Chrome\\chromedriver.exe";
 
-    user = new User ("pepe", "pepega", "pepega@gmail.com", "alien");
-    user2 = new User ("pepemi", "doremi", "pepehoho@hotmail.com", "arabian");
-    userlist.add(user);
-    userlist.add(user2);
-    }
+        System.setProperty("webdriver.chrome.driver", chromeDriverDir);
 
-    //mock database connection to get userlist, print out all users in user list, assert user1 and 2
-    @Test
-    @DisplayName("Test get all users")
-    void testGetAllUsers () {
-        when(mockDatabase.selectAllUsers()).thenReturn(userlist);
-        assertEquals(userlist.get(0).getName(),"pepe");
-        assertEquals(userlist.get(1).getName(), "pepemi");
-
+        //initialize FirefoxDriver at the start of test
+        webDriver = new ChromeDriver();
     }
 
     @Test
-    @DisplayName("Test set name")
-    void testSetName () {
-        System.out.println(user.getName());
-        user.setName("pepega");
-        assertEquals(user.getName(), "pepega");
+    public void checkingPageTitle() {
+        //Load website as a new page
+        webDriver.navigate().to("localhost:8090/maven-web-project/");
+
+        //Assert the title to check that we are indeed in the correct website
+        Assert.assertEquals(webDriver.getTitle(), "Home");
+
+        System.out.println("title: "+webDriver.getTitle());
+
+        //Retrieve link using it's class name and click on it
+        webDriver.findElement(By.className("link")).click();
+
+        //Assert the new title to check that the title contain Wikipedia and the button had successfully bring us to the new page
+        Assert.assertTrue(webDriver.getTitle().contains("Wikipedia"));
+        System.out.println("new title: "+webDriver.getTitle());
     }
 
+    @AfterTest
+    public void afterTest() {
+        //Quit the ChromeDriver and close all associated window at the end of test
+        webDriver.quit();
+    }
 }
