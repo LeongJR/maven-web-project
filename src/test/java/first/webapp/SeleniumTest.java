@@ -39,9 +39,8 @@ public class SeleniumTest {
         //Retrieve link using it's class name and click on it
         webDriver.findElement(By.linkText("Click to go to user registration")).click();
 
-        //Assert the new title to check that the title contain Wikipedia and the button had successfully bring us to the new page
-        Assert.assertTrue(webDriver.getTitle().contains("Register"));
-        System.out.println("new title: "+webDriver.getTitle());
+        //Assert the title to check that we are indeed in the correct website
+        Assert.assertEquals(webDriver.getTitle(), "Home");
     }
 
     @AfterTest
