@@ -12,7 +12,7 @@
 	<junit-jupiter.version>5.10.0-M1</junit-jupiter.version>
 	<!-- SonarQube properties -->
 	<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-	<sonar.junit.reportPaths>${project.basedir}/target/surefire-reports/TEST-JunitTest.xml</sonar.junit.reportPaths>
+	<sonar.junit.reportPaths>${project.basedir}/target/surefire-reports/TEST-first.webapp.JunitTest.xml</sonar.junit.reportPaths>
 	<!-- <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths> -->
 	<sonar.language>java</sonar.language>
 	<!-- Selenium and TestNg properties -->
